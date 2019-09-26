@@ -1,12 +1,11 @@
 // Global Variables Created
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-var charOffice = ["michael scott", "dwight schrute", "jim halpert", "pam beesly", "kevin malone", "andy bernard", "toby flenderson", "angelamartin", "creed bratton", "stanley hudson", "ryan howard", "oscar martinez", "meredith palmer", "kelly kapoor"];
+var charOffice = ["michael scott", "dwight schrute", "jim halpert", "pam beesly", "kevin malone", "andy bernard", "toby flenderson", "angela martin", "creed bratton", "stanley hudson", "ryan howard", "oscar martinez", "meredith palmer", "kelly kapoor"];
 var selectCharacter = "";
 var lettersinName = [];
 var numBlanks = 0;
 var wrongGuess = [];
 var blanksAndSuccess = [];
-var usedGuess = [];
 
 // Game Counters Variables
 var winCount = 0;
@@ -26,9 +25,9 @@ function startGame () {
     numBlanks = lettersinName.length;
     
     //Resets
+    wrongGuess = [];
     guessLeft = 15;
     blanksAndSuccess = [];
-    usedGuess = [];
 
     //Populate blanks and successes with right number of blanks
     for (var i = 0; i < numBlanks; i++) {
@@ -49,9 +48,80 @@ function startGame () {
     console.log(blanksAndSuccess);
 }
 
-startGame ();
+function checkLetter(letter) {
+    //Checks to see if letter exists in the name
+    
+    var isLetterInName = false;
 
+    for (var i = 0; i < numBlanks; i++) {
+        if(selectCharacter[i] == letter) {
+            isLetterInName = true;
+        }
+    }
+
+    //Checks where in name the letter is, then populate out blanksAndSUccesses array
+    if(isLetterInName){
+        for (var i = 0; i < numBlanks; i++) {
+            if(selectCharacter[i] == letter) {
+                blanksAndSuccess[i] = letter;
+
+            }
+        }
+    }
+
+    else {
+        wrongGuess.push(letter);
+        guessLeft--;
+    }
+
+    //Tester
+    console.log(blanksAndSuccess);
+
+}
+
+function roundComplete() {
+    console.log("Win Count: " + winCount + " | Guesses Left: " + guessLeft);
+
+    //Push changes to HTML with most recent stats
+    document.getElementById("guessLeft").innerHTML = guessLeft; 
+    document.getElementById("characterGuess").innerHTML = blanksAndSuccess.join(" ");
+    document.getElementById("usedGuess").innerHTML = wrongGuess.join(" ");
+    
+    //Check if Won
+    if (lettersinName.toString() == blanksAndSuccess.toString()) {
+        winCount++;
+
+        alert("You Won!");
+
+        //Push changes to the win counter in HTML
+        document.getElementById("winCount").innerHTML = winCount;
+
+        startGame();
+    }
+
+    //Check if Lost
+    else if(guessLeft == 0) {
+        alert("You lost!");
+    
+        startGame();
+    }
+}
 
 
 //Main Process Executed
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+//Initiates code for start up.
+startGame ();
+
+//Code required for registering key clicks
+document.onkeyup = function(event) {
+    var letterGuess = String.fromCharCode(event.keyCode).toLocaleLowerCase();
+    checkLetter(letterGuess);
+    roundComplete();
+
+    //Tester
+    console.log(letterGuess);
+}
+
+
