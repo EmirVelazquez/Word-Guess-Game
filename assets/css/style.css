@@ -1,0 +1,11 @@
+h1 {
+    width: 100%;
+    text-align: center;
+    background: rgb(40, 91, 133);
+    color: #fff;
+    padding: 40px;
+}
+
+.lead {
+    text-align: center;
+}
