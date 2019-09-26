@@ -1,6 +1,6 @@
 // Global Variables Created
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-var charOffice = ["michael scott", "dwight schrute", "jim halpert", "pam beesly", "kevin malone", "andy bernard", "toby flenderson", "angela martin", "creed bratton", "stanley hudson", "ryan howard", "oscar martinez", "meredith palmer", "kelly kapoor"];
+var charOffice = ["michaelscott", "dwightschrute", "jimhalpert", "pambeesly", "kevinmalone", "andybernard", "tobyflenderson", "angelamartin", "creedbratton", "stanleyhudson", "ryanhoward", "oscarmartinez", "meredithpalmer", "kellykapoor"];
 var selectCharacter = "";
 var lettersinName = [];
 var numBlanks = 0;
@@ -10,9 +10,6 @@ var blanksAndSuccess = [];
 // Game Counters Variables
 var winCount = 0;
 var guessLeft = 15;
-
-
-
 
 // Functions
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
